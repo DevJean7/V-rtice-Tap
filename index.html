@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÉRTICE TAP WEST | Criação de sites profissionais no Rio de Janeiro</title>
+<meta name="description" content="Agência de desenvolvimento web no Rio de Janeiro. Sites institucionais, landing pages, cardápios e catálogos digitais para pequenos e médios negócios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS ===== */
+:root{
+  --bg:#09090B; --bg2:#111114; --p1:#7C3AED; --p2:#A855F7; --w:#fff; --g:#A1A1AA;
+  --line:rgba(255,255,255,.09); --glass:rgba(255,255,255,.04);
+  --grad:linear-gradient(135deg,#7C3AED,#A855F7);
+  --max:1160px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:var(--w);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--p2);outline-offset:3px}
+.wrap{width:min(var(--max),100% - 40px);margin-inline:auto}
+section{padding:96px 0;position:relative}
+h1,h2,h3{line-height:1.08;letter-spacing:-.02em}
+h2{font-weight:900;font-size:clamp(1.9rem,4.6vw,3.1rem);max-width:17ch}
+.lead{color:var(--g);max-width:56ch;margin-top:18px}
+.sec-head{margin-bottom:52px}
+
+/* ===== BOTÕES ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 28px;border-radius:12px;font-weight:700;font-size:.88rem;letter-spacing:.04em;border:1px solid transparent;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
+.btn-p{background:var(--grad);box-shadow:0 8px 30px -8px rgba(124,58,237,.7)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 36px -8px rgba(168,85,247,.8)}
+.btn-o{border-color:rgba(255,255,255,.2);background:var(--glass)}
+.btn-o:hover{border-color:var(--p2);background:rgba(168,85,247,.12);transform:translateY(-3px)}
+.btn-s{min-height:42px;padding:0 20px;font-size:.8rem}
+
+/* ===== NAVBAR ===== */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,border-color .3s,padding .3s;border-bottom:1px solid transparent;padding:10px 0}
+.nav.scrolled{background:rgba(9,9,11,.78);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-color:var(--line);padding:4px 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:900;letter-spacing:.06em;font-size:1rem;display:flex;align-items:center;gap:10px}
+.logo i{width:26px;height:26px;background:var(--grad);clip-path:polygon(50% 100%,0 0,100% 0);display:block}
+.logo b{color:var(--p2)}
+.menu{display:flex;align-items:center;gap:30px}
+.menu a:not(.btn){font-size:.84rem;font-weight:700;color:var(--g);transition:color .2s;position:relative}
+.menu a:not(.btn):hover{color:#fff}
+.menu a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--grad);transition:width .3s}
+.menu a:not(.btn):hover::after{width:100%}
+.burger{display:none;width:46px;height:46px;border-radius:12px;border:1px solid var(--line);background:var(--glass);cursor:pointer;position:relative}
+.burger span{position:absolute;left:13px;right:13px;height:2px;background:#fff;transition:transform .3s,opacity .3s,top .3s}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:22px}.burger span:nth-child(3){top:28px}
+.burger[aria-expanded=true] span:nth-child(1){top:22px;transform:rotate(45deg)}
+.burger[aria-expanded=true] span:nth-child(2){opacity:0}
+.burger[aria-expanded=true] span:nth-child(3){top:22px;transform:rotate(-45deg)}
+
+/* ===== HERO ===== */
+.hero{min-height:100svh;display:flex;align-items:center;padding:130px 0 80px;overflow:hidden}
+.hero::before{content:"";position:absolute;width:640px;height:640px;right:-160px;top:-60px;background:radial-gradient(circle,rgba(124,58,237,.42),transparent 65%);filter:blur(20px);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at 70% 40%,#000,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 70% 40%,#000,transparent 70%);opacity:.5;pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;position:relative;z-index:2}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border:1px solid var(--line);border-radius:99px;background:var(--glass);font-size:.78rem;color:var(--g);margin-bottom:26px}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--p2);box-shadow:0 0 12px var(--p2)}
+.hero h1{font-weight:900;font-size:clamp(2.5rem,6.4vw,4.8rem);text-transform:uppercase}
+.hero h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{color:var(--g);font-size:1.08rem;max-width:50ch;margin:24px 0 36px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+
+/* palco do hero: mockups */
+.stage{position:relative;height:460px;perspective:1200px}
+.m-desk,.m-phone{position:absolute;background:#0f0f13;border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 80px -20px rgba(0,0,0,.8),0 0 60px -10px rgba(124,58,237,.45)}
+.m-desk{left:0;top:30px;width:88%;border-radius:16px;overflow:hidden;transform:rotateY(-12deg) rotateX(4deg);animation:float 7s ease-in-out infinite}
+.m-phone{right:0;bottom:0;width:30%;aspect-ratio:9/18;border-radius:28px;padding:8px;animation:float 7s ease-in-out -3s infinite}
+.m-phone .scr{border-radius:21px;height:100%}
+@keyframes float{50%{translate:0 -12px}}
+.chip{position:absolute;z-index:3;padding:10px 16px;border-radius:12px;font-size:.76rem;font-weight:700;background:rgba(20,20,26,.7);backdrop-filter:blur(10px);border:1px solid var(--line)}
+.chip.a{left:-14px;bottom:70px}.chip.b{right:4%;top:0}
+.chip span{color:var(--p2)}
+
+/* ===== MOCKUP GENÉRICO (usado no hero e no portfólio) ===== */
+.bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#17171c;border-bottom:1px solid var(--line)}
+.bar i{width:9px;height:9px;border-radius:50%;background:#3f3f46}
+.bar small{margin-left:10px;flex:1;background:#0b0b0e;border-radius:6px;padding:3px 10px;font-size:.62rem;color:var(--g);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scr{background:var(--b,#120a1f);color:#fff;padding:16px 18px 18px;font-size:.7rem}
+.scr .tn{display:flex;justify-content:space-between;align-items:center;font-weight:900;font-size:.72rem;margin-bottom:22px}
+.scr .tn b{color:var(--c)}
+.scr .tn span{display:flex;gap:8px;opacity:.5}.scr .tn span i{width:16px;height:3px;background:#fff;border-radius:2px}
+.scr h4{font-size:1.28em;font-weight:900;line-height:1.1;max-width:14ch;text-transform:uppercase}
+.scr h4 + p{opacity:.65;margin:8px 0 12px;font-size:.9em;max-width:26ch}
+.scr .bt{display:inline-block;background:var(--c);color:#111;font-weight:900;padding:6px 14px;border-radius:6px;font-size:.85em}
+.scr .gr{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.scr .gr div{border-radius:8px;padding:34px 6px 6px;font-size:.78em;font-weight:700;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 38%,transparent),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.08)}
+.m-desk .scr{padding:22px 26px 26px;font-size:.82rem}
+
+/* ===== SERVIÇOS ===== */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{position:relative;padding:30px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(180deg,var(--glass),transparent);overflow:hidden;transition:transform .35s,border-color .35s;display:flex;flex-direction:column}
+.card::before{content:"";position:absolute;width:220px;height:220px;right:-90px;top:-90px;background:radial-gradient(circle,rgba(168,85,247,.35),transparent 70%);opacity:0;transition:opacity .4s}
+.card:hover{transform:translateY(-6px);border-color:rgba(168,85,247,.55)}
+.card:hover::before{opacity:1}
+.ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(124,58,237,.16);border:1px solid rgba(168,85,247,.35);margin-bottom:22px}
+.ico svg{width:24px;height:24px;stroke:var(--p2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:1.2rem;font-weight:700;margin-bottom:10px}
+.card p{color:var(--g);font-size:.92rem;flex:1}
+.card a.lk{margin-top:22px;font-weight:700;font-size:.84rem;color:var(--p2);display:inline-flex;gap:8px;transition:gap .25s}
+.card a.lk:hover{gap:14px}
+.card.hl{background:var(--grad);border:0}
+.card.hl .ico{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.3)}
+.card.hl .ico svg{stroke:#fff}.card.hl p{color:rgba(255,255,255,.88)}.card.hl a.lk{color:#fff}
+
+/* ===== PORTFÓLIO ===== */
+#portfolio{background:var(--bg2)}
+.port{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.proj{border-radius:18px;transition:transform .35s}
+.proj:hover{transform:translateY(-8px)}
+.proj .mock{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#0f0f13;box-shadow:0 24px 50px -24px #000;transition:box-shadow .35s}
+.proj:hover .mock{box-shadow:0 30px 60px -20px rgba(124,58,237,.55)}
+.proj.ph .mock{width:62%;margin-inline:auto;border-radius:30px;padding:8px}
+.proj.ph .scr{border-radius:22px;min-height:292px}
+.proj.ph .gr{grid-template-columns:repeat(2,1fr)}
+.proj .meta{display:flex;justify-content:space-between;gap:10px;margin-top:16px;align-items:center}
+.proj .meta b{font-size:.95rem}
+.proj .meta span{font-size:.7rem;color:var(--g);border:1px solid var(--line);border-radius:99px;padding:3px 10px;white-space:nowrap}
+.note{margin-top:34px;color:var(--g);font-size:.84rem;text-align:center}
+
+/* ===== DIFERENCIAIS ===== */
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feat li{padding:24px 22px;border-radius:16px;border:1px solid var(--line);background:var(--glass);transition:border-color .3s,background .3s}
+.feat li:hover{border-color:rgba(168,85,247,.5);background:rgba(124,58,237,.08)}
+.feat svg{width:26px;height:26px;stroke:var(--p2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px}
+.feat b{display:block;font-size:.95rem;margin-bottom:4px}
+.feat span{color:var(--g);font-size:.84rem;display:block}
+
+/* ===== SOBRE ===== */
+.about .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.about p{color:var(--g);margin-top:18px}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pillars div{padding:26px 22px;border-radius:16px;border:1px solid var(--line);background:var(--glass)}
+.pillars div:nth-child(2),.pillars div:nth-child(3){transform:translateY(22px)}
+.pillars b{display:block;font-weight:900;font-size:1.05rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px}
+.pillars span{color:var(--g);font-size:.86rem}
+
+/* ===== LOCALIZAÇÃO ===== */
+#contato{background:var(--bg2)}
+#contato .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.info{border-radius:22px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(10px);padding:8px}
+.info li{display:flex;gap:16px;padding:18px;border-bottom:1px solid var(--line);align-items:flex-start}
+.info li:last-child{border:0}
+.info svg{flex:none;width:22px;height:22px;stroke:var(--p2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+.info small{display:block;color:var(--g);font-size:.76rem}
+.info b{font-size:.95rem}
+
+/* ===== CHAMADA FINAL ===== */
+.final .box{position:relative;border-radius:28px;padding:80px 32px;text-align:center;overflow:hidden;border:1px solid rgba(168,85,247,.4);background:radial-gradient(ellipse at 50% 0,rgba(124,58,237,.55),transparent 65%),#0d0d12}
+.final h2{margin-inline:auto;max-width:20ch;text-transform:uppercase}
+.final .lead{margin-inline:auto}
+.final .cta-row{justify-content:center;margin-top:34px}
+
+/* ===== RODAPÉ ===== */
+footer{border-top:1px solid var(--line);padding:64px 0 28px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+footer p{color:var(--g);font-size:.88rem;margin-top:14px;max-width:34ch}
+footer h5{font-size:.85rem;margin-bottom:14px}
+footer li{margin-bottom:8px}
+footer li a{color:var(--g);font-size:.88rem;transition:color .2s}
+footer li a:hover{color:var(--p2)}
+.copy{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);color:var(--g);font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* ===== WHATSAPP FLUTUANTE ===== */
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);transition:transform .25s}
+.wa:hover{transform:scale(1.1) rotate(-6deg)}
+.wa svg{width:32px;height:32px;fill:#fff}
+.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25D366;animation:ping 2.6s ease-out infinite}
+@keyframes ping{to{transform:scale(1.55);opacity:0}}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:1000px){
+  .cards,.port{grid-template-columns:repeat(2,1fr)}
+  .feat{grid-template-columns:repeat(2,1fr)}
+  .hero .wrap,.about .wrap,#contato .wrap{grid-template-columns:1fr}
+  .stage{height:400px;max-width:560px;margin-inline:auto;width:100%}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:820px){
+  .burger{display:block}
+  .menu{position:fixed;inset:72px 16px auto;flex-direction:column;align-items:stretch;gap:4px;padding:16px;border-radius:20px;background:rgba(14,14,18,.96);backdrop-filter:blur(18px);border:1px solid var(--line);opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity .3s,transform .3s,visibility .3s}
+  .menu.open{opacity:1;visibility:visible;transform:none}
+  .menu a:not(.btn){padding:14px 12px;font-size:.95rem}
+  .menu a:not(.btn)::after{display:none}
+  .menu .btn{margin-top:8px}
+}
+@media(max-width:600px){
+  section{padding:72px 0}
+  .cards,.port,.feat,.fgrid,.pillars{grid-template-columns:1fr}
+  .pillars div:nth-child(2),.pillars div:nth-child(3){transform:none}
+  .btn{width:100%}
+  .stage{height:340px}
+  .chip{display:none}
+  .proj.ph .mock{width:70%}
+  .final .box{padding:56px 20px}
+  .wa{width:56px;height:56px;right:16px;bottom:16px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 1. NAVBAR FIXA ===== -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#inicio" class="logo" aria-label="VÉRTICE TAP WEST - início"><i></i><span>VÉRTICE <b>TAP WEST</b></span></a>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#" data-wa class="btn btn-p btn-s" target="_blank" rel="noopener">Solicitar orçamento</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ===== 2. HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <span class="pill">Agência de desenvolvimento web · Rio de Janeiro, RJ</span>
+      <h1>Seu negócio merece um site <em>à altura.</em></h1>
+      <p class="sub">Criamos experiências digitais que valorizam sua marca, apresentam seus produtos e aproximam seu negócio de novos clientes.</p>
+      <div class="cta-row">
+        <a href="#" data-wa class="btn btn-p" target="_blank" rel="noopener">SOLICITAR ORÇAMENTO</a>
+        <a href="#portfolio" class="btn btn-o">EXPLORAR PROJETOS</a>
+      </div>
+    </div>
+    <!-- Composição visual: mockups de desktop e smartphone -->
+    <div class="stage" aria-hidden="true">
+      <div class="m-desk">
+        <div class="bar"><i></i><i></i><i></i><small>seunegocio.com.br</small></div>
+        <div class="scr" style="--c:#A855F7;--b:#150b26">
+          <div class="tn"><b>SEU NEGÓCIO</b><span><i></i><i></i><i></i></span></div>
+          <h4>Sua marca, no ar e pronta para vender</h4>
+          <p>Um site feito sob medida para o seu público.</p>
+          <span class="bt">Fale conosco</span>
+          <div class="gr"><div>Serviços</div><div>Portfólio</div><div>Contato</div></div>
+        </div>
+      </div>
+      <div class="m-phone">
+        <div class="scr" style="--c:#7C3AED;--b:#0e0e14;padding:16px 12px;font-size:.58rem">
+          <div class="tn"><b>MARCA</b><span><i></i><i></i></span></div>
+          <h4>Bem-vindo</h4><p>Peça pelo WhatsApp</p><span class="bt">Pedir</span>
+          <div class="gr" style="grid-template-columns:1fr 1fr"><div>Item</div><div>Item</div></div>
+        </div>
+      </div>
+      <div class="chip a"><span>●</span> 100% responsivo</div>
+      <div class="chip b">Integração com <span>WhatsApp</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. SERVIÇOS ===== -->
+<section id="servicos">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>O que podemos criar para o seu negócio?</h2>
+      <p class="lead">Cinco formatos de site para apresentar sua empresa, divulgar o que você vende e facilitar o contato com novos clientes.</p>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- ===== 4. PORTFÓLIO ===== -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Ideias que ganham vida na web.</h2>
+      <p class="lead">Veja como a VÉRTICE TAP WEST pode apresentar negócios de diferentes segmentos, cada um com identidade própria.</p>
+    </div>
+    <div class="port" id="port"></div>
+    <p class="note rv">Todos os projetos acima são demonstrações conceituais, criadas para ilustrar nosso estilo de trabalho. Não representam clientes reais.</p>
+  </div>
+</section>
+
+<!-- ===== 5. DIFERENCIAIS ===== -->
+<section id="diferenciais">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Mais do que um site. Uma presença digital.</h2>
+    </div>
+    <ul class="feat" id="feat"></ul>
+  </div>
+</section>
+
+<!-- ===== 6. SOBRE ===== -->
+<section class="about" id="sobre">
+  <div class="wrap">
+    <div class="rv">
+      <h2>Transformando negócios em experiências digitais.</h2>
+      <p>A VÉRTICE TAP WEST nasceu com o propósito de tornar o desenvolvimento de sites profissionais mais acessível para pequenos negócios.</p>
+      <p>Muitos empreendedores têm excelentes produtos e serviços, mas ainda não possuem uma presença digital própria que represente a qualidade do seu trabalho. É nesse cenário que atuamos: desenvolvemos soluções personalizadas para ajudar negócios a se apresentarem melhor na internet.</p>
+    </div>
+    <div class="pillars rv">
+      <div><b>Visão</b><span>Todo negócio com um site que o represente bem.</span></div>
+      <div><b>Qualidade</b><span>Código limpo, design cuidadoso e entrega revisada.</span></div>
+      <div><b>Detalhes</b><span>Espaçamento, tipografia e velocidade importam.</span></div>
+      <div><b>Dedicação</b><span>Cada projeto recebe atenção individual.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. LOCALIZAÇÃO E ATENDIMENTO ===== -->
+<section id="contato">
+  <div class="wrap">
+    <div class="rv">
+      <h2>Do Rio de Janeiro para o digital.</h2>
+      <p class="lead">Atendemos a partir do Rio e podemos desenvolver projetos para clientes de outras localidades. O primeiro contato é feito pelo WhatsApp.</p>
+      <div class="cta-row" style="margin-top:28px"><a href="#" data-wa class="btn btn-p" target="_blank" rel="noopener">CHAMAR NO WHATSAPP</a></div>
+    </div>
+    <ul class="info rv">
+      <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><small>Agência</small><b>VÉRTICE TAP WEST · Rio de Janeiro, RJ</b></div></li>
+      <li><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7L4 20l1-5A8 8 0 1 1 21 12z"/></svg><div><small>Atendimento comercial</small><b>Pelo WhatsApp</b></div></li>
+      <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><div><small>Alcance</small><b>Clientes de outras localidades</b></div></li>
+      <!-- PLACEHOLDERS: substitua pelos dados reais quando desejar -->
+      <li><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><div><small>Telefone</small><b>(21) 92036-1632</b></div></li>
+      <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><small>Horário de atendimento</small><b>09:00 às 21:00</b></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 8. CHAMADA FINAL ===== -->
+<section class="final">
+  <div class="wrap">
+    <div class="box rv">
+      <h2>Seu próximo passo começa com um site profissional.</h2>
+      <p class="lead">Chegou a hora de dar ao seu negócio uma presença digital à altura. Conte sua ideia para nós e vamos transformá-la em um projeto.</p>
+      <div class="cta-row">
+        <a href="#" data-wa class="btn btn-p" target="_blank" rel="noopener">SOLICITAR MEU ORÇAMENTO</a>
+        <a href="#" data-wa class="btn btn-o" target="_blank" rel="noopener">FALAR COM A AGÊNCIA</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== 9. RODAPÉ ===== -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a href="#inicio" class="logo"><i></i><span>VÉRTICE <b>TAP WEST</b></span></a>
+        <p>Agência de desenvolvimento web que cria sites profissionais, modernos e personalizados para pequenos e médios negócios.</p>
+      </div>
+      <div><h5>Navegação</h5><ul><li><a href="#inicio">Início</a></li><li><a href="#diferenciais">Diferenciais</a></li><li><a href="#sobre">Sobre</a></li></ul></div>
+      <div><h5>Projetos</h5><ul><li><a href="#servicos">Serviços</a></li><li><a href="#portfolio">Portfólio</a></li></ul></div>
+      <div><h5>Contato</h5><ul>
+        <li><a href="#" data-wa target="_blank" rel="noopener">WhatsApp</a></li>
+        <!-- Troque pelo link real do Instagram -->
+        <li><a href="https://instagram.com/SEU_INSTAGRAM" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#contato">Rio de Janeiro, RJ</a></li></ul></div>
+    </div>
+    <div class="copy"><span>© <span id="year"></span> VÉRTICE TAP WEST. Todos os direitos reservados.</span><span>Rio de Janeiro, RJ</span></div>
+  </div>
+</footer>
+
+<!-- ===== BOTÃO FLUTUANTE WHATSAPP ===== -->
+<a href="#" data-wa class="wa" target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-1.9 1.3-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.8-.1 1.5z"/></svg>
+</a>
+
+<script>
+/* ============ CONFIGURAÇÃO ============ */
+/* >>> SUBSTITUA pelo número real (DDI + DDD + número, só dígitos). Atual: FICTÍCIO <<< */
+const WA_NUMBER = "5521920361632";
+const WA_MESSAGE = "Olá! Conheci a VÉRTICE TAP WEST pelo site e gostaria de solicitar um orçamento.";
+
+/* Aplica o link do WhatsApp em todos os elementos com [data-wa] */
+const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;
+document.querySelectorAll("[data-wa]").forEach(a => a.href = waUrl);
+
+/* ============ DADOS ============ */
+const svg = d => `<svg viewBox="0 0 24 24">${d}</svg>`;
+const I = {
+  site: svg('<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/>'),
+  lp: svg('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'),
+  menu: svg('<path d="M6 3v8a3 3 0 0 0 3 3v7M9 3v6M12 3v8a3 3 0 0 1-3 3M18 21V3c-2 1-3 4-3 8h3"/>'),
+  cat: svg('<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>'),
+  code: svg('<path d="M8 8l-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/>'),
+  pen: svg('<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'),
+  phone: svg('<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>'),
+  touch: svg('<path d="M9 11V5a2 2 0 0 1 4 0v6M13 10a2 2 0 0 1 4 0v3a6 6 0 0 1-6 6c-3 0-4-2-6-5l-1-2a2 2 0 0 1 3-1l2 2"/>'),
+  nav: svg('<circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/>'),
+  chat: svg('<path d="M21 12a8 8 0 0 1-11.7 7L4 20l1-5A8 8 0 1 1 21 12z"/>'),
+  box: svg('<path d="M21 8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/>'),
+  target: svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>'),
+  heart: svg('<path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 0 0-7.1 7.1L12 21l8.8-8.3a5 5 0 0 0 0-7.1z"/>')
+};
+
+const services = [
+  ["site","Sites institucionais","Sites profissionais para empresas que desejam apresentar seus serviços, fortalecer sua marca e transmitir credibilidade."],
+  ["lp","Landing Pages","Páginas estratégicas desenvolvidas para apresentar ofertas, captar contatos e gerar oportunidades comerciais."],
+  ["menu","Cardápios digitais","Sites para restaurantes, hamburguerias, lanchonetes e outros estabelecimentos que desejam apresentar seus produtos de maneira organizada."],
+  ["cat","Catálogos digitais","Apresentação profissional de produtos, com informações, imagens e formas de contato."],
+  ["code","Sites personalizados","Projetos desenvolvidos de acordo com a identidade visual, necessidades e objetivos de cada negócio.",true]
+];
+document.getElementById("cards").innerHTML = services.map(([i,t,d,hl]) => `
+  <article class="card rv${hl ? " hl" : ""}">
+    <div class="ico">${I[i]}</div><h3>${t}</h3><p>${d}</p>
+    <a class="lk" href="${waUrl}" target="_blank" rel="noopener">Solicitar orçamento <span aria-hidden="true">›</span></a>
+  </article>`).join("");
+
+/* Projetos demonstrativos (conceituais): [segmento, marca, cor destaque, fundo, título, texto, botão, itens, celular?] */
+const projects = [
+  ["Hamburgueria","BRASA & CIA","#F59E0B","#1a0f08","Hambúrguer na brasa","Feito na hora, do jeito artesanal.","Ver cardápio",["Clássico","Duplo","Bacon"]],
+  ["Restaurante","CASA VERDE","#22C55E","#0a1a10","Comida de verdade","Pratos do dia e reservas online.","Reservar mesa",["Entradas","Pratos","Sobremesas"]],
+  ["Barbearia","OLD RIO BARBER","#D4AF37","#101010","Corte e barba com estilo","Agende seu horário em segundos.","Agendar",["Corte","Barba","Combo"]],
+  ["Loja de roupas","URBANA","#EC4899","#1a0d16","Nova coleção","Peças para o seu estilo.","Ver coleção",["Camisetas","Calças","Looks"],true],
+  ["Pizzaria","FORNO 21","#EF4444","#1c0c0c","Pizza de forno a lenha","Peça pelo WhatsApp e receba quentinha.","Pedir agora",["Salgadas","Doces","Combos"]],
+  ["Prestação de serviços","PRIME SERVIÇOS","#38BDF8","#0a1520","Soluções sob medida","Atendimento profissional para você.","Pedir contato",["Serviços","Planos","Contato"],true]
+];
+const slug = n => n.toLowerCase().replace(/[^a-z]+/g,"");
+document.getElementById("port").innerHTML = projects.map(([seg,brand,c,b,h,p,bt,items,ph]) => `
+  <article class="proj${ph ? " ph" : ""} rv">
+    <div class="mock">
+      ${ph ? "" : `<div class="bar"><i></i><i></i><i></i><small>${slug(brand)}.com.br</small></div>`}
+      <div class="scr" style="--c:${c};--b:${b}">
+        <div class="tn"><b>${brand}</b><span><i></i><i></i><i></i></span></div>
+        <h4>${h}</h4><p>${p}</p><span class="bt">${bt}</span>
+        <div class="gr">${items.slice(0, ph ? 2 : 3).map(x => `<div>${x}</div>`).join("")}</div>
+      </div>
+    </div>
+    <div class="meta"><b>${seg}</b><span>Projeto demonstrativo</span></div>
+  </article>`).join("");
+
+const feats = [
+  ["pen","Design personalizado","Layout criado para a sua marca."],
+  ["phone","Layout responsivo","Funciona em qualquer tela."],
+  ["touch","Otimizado para celulares","Pensado primeiro para o toque."],
+  ["nav","Navegação intuitiva","O cliente encontra tudo rápido."],
+  ["chat","Integração com WhatsApp","Contato direto com um clique."],
+  ["box","Produtos e serviços","Apresentação clara e profissional."],
+  ["target","Foco no objetivo","Cada seção trabalha pelo seu negócio."],
+  ["heart","Atendimento personalizado","Você fala direto com quem desenvolve."]
+];
+document.getElementById("feat").innerHTML = feats.map(([i,t,d]) =>
+  `<li class="rv">${I[i]}<b>${t}</b><span>${d}</span></li>`).join("");
+
+/* ============ INTERAÇÕES ============ */
+const nav = document.getElementById("nav");
+const burger = document.getElementById("burger");
+const menu = document.getElementById("menu");
+
+/* Navbar muda ao rolar */
+const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+onScroll();
+window.addEventListener("scroll", onScroll, { passive: true });
+
+/* Menu mobile: abre/fecha, fecha ao clicar em link ou pressionar Esc */
+const setMenu = open => {
+  menu.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", open);
+  burger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+};
+burger.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+window.addEventListener("resize", () => { if (innerWidth > 820) setMenu(false); });
+
+/* Animações de entrada ao rolar */
+const els = document.querySelectorAll(".rv");
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+  }), { threshold: .12 });
+  els.forEach((el, i) => { el.style.transitionDelay = (i % 3) * 80 + "ms"; io.observe(el); });
+} else { els.forEach(el => el.classList.add("in")); }
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
